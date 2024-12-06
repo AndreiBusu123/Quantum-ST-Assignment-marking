@@ -5,90 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sydney Trains Assignment Marking</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .preview-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+    </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
-    <div class="container mx-auto px-4 py-8 max-w-4xl">
-        <header class="bg-blue-700 text-white rounded-t-lg p-6">
-            <h1 class="text-2xl font-bold text-center">Sydney Trains Assignment Marking</h1>
-        </header>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8 max-w-2xl">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <header class="bg-[#4554E0] text-white p-6">
+                <h1 class="text-2xl font-bold text-center">Sydney Trains Assignment Marking</h1>
+            </header>
 
-        <main class="bg-white rounded-b-lg shadow-lg p-6">
-            <section class="mb-8">
+            <div class="form-container">
                 <h2 class="text-xl font-semibold mb-4">Assignment Upload</h2>
-                <form id="assignmentForm" class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <!-- First Name -->
-                        <div>
-                            <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-                            <input type="text" id="firstName" name="firstName" 
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                   required>
-                        </div>
-
-                        <!-- Last Name -->
-                        <div>
-                            <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
-                            <input type="text" id="lastName" name="lastName" 
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                   required>
-                        </div>
+                
+                <form id="assignmentForm">
+                    <div class="form-group">
+                        <label class="form-label" for="firstName">First Name:</label>
+                        <input type="text" id="firstName" name="firstName" class="form-input" required>
                     </div>
 
-                    <!-- Level Selection -->
-                    <div>
-                        <label for="level" class="block text-sm font-medium text-gray-700 mb-1">Level</label>
-                        <select id="level" name="level" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                required>
+                    <div class="form-group">
+                        <label class="form-label" for="lastName">Last Name:</label>
+                        <input type="text" id="lastName" name="lastName" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="level">Level:</label>
+                        <select id="level" name="level" class="form-input" required>
                             <option value="TPO01">TPO01</option>
                             <option value="TPO02">TPO02</option>
                         </select>
                     </div>
 
-                    <!-- Assignment Number -->
-                    <div>
-                        <label for="assignmentNumber" class="block text-sm font-medium text-gray-700 mb-1">
-                            Assignment Number (e.g., 3.5)
-                        </label>
+                    <div class="form-group">
+                        <label class="form-label" for="assignmentNumber">Assignment Number (e.g., 3.5):</label>
                         <input type="text" id="assignmentNumber" name="assignmentNumber" 
-                               pattern="\d+\.\d+" title="Please enter in format: number.number (e.g., 3.5)"
-                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                               required>
-                        <p class="mt-1 text-sm text-gray-500">Format: number.number (e.g., 3.5)</p>
+                               pattern="\d+\.\d+" 
+                               title="Please enter in format: number.number (e.g., 3.5)"
+                               class="form-input" required>
+                        <small class="text-gray-600">Format: number.number (e.g., 3.5)</small>
                     </div>
 
-                    <!-- File Upload -->
-                    <div>
-                        <label for="file" class="block text-sm font-medium text-gray-700 mb-1">Upload Assignment</label>
+                    <div class="form-group">
+                        <label class="form-label" for="file">Upload Assignment:</label>
                         <input type="file" id="file" name="file" 
                                accept=".pdf,.jpg,.jpeg,.png,.docx"
-                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                               required>
-                        <p class="mt-1 text-sm text-gray-500">Accepted formats: PDF, JPEG, PNG, DOCX</p>
+                               class="form-input" required>
+                        <small class="text-gray-600">Accepted formats: PDF, JPEG, PNG, DOCX</small>
                     </div>
 
-                    <!-- File Name Preview -->
-                    <div class="bg-gray-50 p-4 rounded-md">
-                        <h3 class="text-sm font-medium text-gray-700 mb-2">File Name Preview:</h3>
-                        <p id="fileNamePreview" class="font-mono text-sm bg-white p-2 rounded border border-gray-300">-</p>
+                    <div class="preview-section">
+                        <h3 class="font-medium mb-2">File Name Preview:</h3>
+                        <p id="fileNamePreview" class="font-mono bg-white p-2 border rounded">-</p>
                     </div>
 
-                    <!-- Submit Button -->
                     <button type="submit" 
-                            class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+                            class="w-full mt-4 bg-[#4554E0] text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors">
                         Submit Assignment
                     </button>
                 </form>
-            </section>
 
-            <!-- Status Messages -->
-            <div id="statusMessages" class="hidden">
-                <div class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded relative" role="alert">
+                <div id="statusMessages" class="hidden mt-4 p-4 bg-green-50 border border-green-200 text-green-700 rounded">
                     <p class="font-medium">Assignment submitted successfully!</p>
                     <p class="text-sm">Your assignment has been uploaded and will be reviewed.</p>
                 </div>
             </div>
-        </main>
+        </div>
     </div>
 
     <script>
@@ -97,7 +103,6 @@
             const fileNamePreview = document.getElementById('fileNamePreview');
             const statusMessages = document.getElementById('statusMessages');
 
-            // Update file name preview
             function updateFileNamePreview() {
                 const firstName = document.getElementById('firstName').value;
                 const lastName = document.getElementById('lastName').value;
@@ -112,16 +117,13 @@
                 }
             }
 
-            // Add input event listeners to all form fields
             ['firstName', 'lastName', 'level', 'assignmentNumber'].forEach(id => {
                 document.getElementById(id).addEventListener('input', updateFileNamePreview);
             });
 
-            // Form submission
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // Validate assignment number format
                 const assignmentNumber = document.getElementById('assignmentNumber').value;
                 const assignmentNumberRegex = /^\d+\.\d+$/;
                 if (!assignmentNumberRegex.test(assignmentNumber)) {
@@ -129,7 +131,6 @@
                     return;
                 }
 
-                // Validate file
                 const fileInput = document.getElementById('file');
                 const file = fileInput.files[0];
                 if (file) {
@@ -141,12 +142,10 @@
                     }
                 }
 
-                // Show success message
                 statusMessages.classList.remove('hidden');
                 form.reset();
                 fileNamePreview.textContent = '-';
 
-                // Hide success message after 5 seconds
                 setTimeout(() => {
                     statusMessages.classList.add('hidden');
                 }, 5000);
